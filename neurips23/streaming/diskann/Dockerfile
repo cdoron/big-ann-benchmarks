@@ -8,6 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y git make cmake g++ libaio-dev 
 
 RUN git clone https://github.com/microsoft/DiskANN.git --branch  0.5.0.rc3.post1
 WORKDIR /home/app/DiskANN
+RUN sed -i 's/-march=native/-march=x86-64-v3/g' CMakeLists.txt
 RUN pip3 install virtualenv build
 RUN python3 -m build
 RUN pip install dist/diskannpy-0.5.0rc3.post1-cp310-cp310-linux_x86_64.whl
